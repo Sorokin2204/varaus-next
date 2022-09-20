@@ -1,0 +1,36 @@
+.wrap {
+  margin-top: 16px;
+}
+.head {
+  padding: 0 16px;
+  background: #e0ecff;
+  border-radius: 4px 4px 0px 0px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+.headDrag {
+  padding-right: 12px;
+}
+.headTitle {
+  margin-right: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.32px;
+
+  color: #212529;
+}
+.headArrow {
+  margin-left: auto;
+  transform: rotate(180deg);
+  transition: transform 0.5s;
+}
+.headArrowActive {
+  transform: rotate(0deg);
+}
+.body {
+  background: #f8f9fa;
+  border-radius: 0px 0px 4px 4px;
+  padding: 16px;
+}

@@ -1,0 +1,30 @@
+.modal {
+  padding: 16px;
+  margin: 0 auto;
+}
+.modalBody {
+  background-color: #fff;
+  padding: 20px;
+}
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 16px;
+}
+.modalTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #212529;
+  margin: 0;
+}
+.modalBtn {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  display: block;
+}

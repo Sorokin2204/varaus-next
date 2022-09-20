@@ -1,0 +1,50 @@
+.imgCard {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.close {
+  cursor: pointer;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: none;
+  padding: 0;
+  border-radius: 3px;
+  i {
+    display: block;
+    font-size: 10px;
+  }
+  //   display: none;
+}
+.wrap {
+  width: 110px;
+}
+.name {
+  margin-top: 4px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #6c757d;
+}
+
+.nameTop {
+  //   margin-bottom: 4px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #6c757d;
+}

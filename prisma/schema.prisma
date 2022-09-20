@@ -1,0 +1,229 @@
+// schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model REG_ROLES {
+  U_ROLE__ID  String   @id @map("U_ROLE_,ID") @db.Uuid @default(uuid())
+  S_ROLE_NAME String?  @db.VarChar(255)
+  S_LOCALE_ENTITY_TYPE String?  @db.VarChar(255)
+  S_LOCALE_ENTITY_CODE String?  @db.VarChar(255)
+  C_ACTIVE    Boolean?
+}
+
+model SYS_DOMAINS {
+  U_DOMAIN_ID   String    @id @db.Uuid @default(uuid())
+  S_DOMAIN_CODE String?   @db.VarChar(255)
+  D_CREATED     DateTime? @db.Date
+  S_STATUS      String?   @db.VarChar(255)
+  S_DB_USERNAME String?   @db.VarChar(255)
+  C_ACTIVE      Boolean?
+  S_DB_PASSWORD String?   @db.VarChar(255)
+}
+
+model SYS_DOMAIN_SERVICES {
+  U_DOMAIN_ID   String    @id @db.Uuid @default(uuid())
+  SERVICES_LIST String?
+  D_BEGIN       DateTime? @db.Date
+  D_END         DateTime? @db.Date
+  C_ACTIVE      Boolean?
+}
+
+model SYS_SERVICES {
+  U_SERVICE_ID        String    @id @db.Uuid @default(uuid())
+  S_SERVICE_NAME      String?   @db.VarChar(255)
+  SERVICE_PARAMS_LIST String?   @db.VarChar(255)
+  C_ACTIVE            Boolean?
+  D_BEGIN             DateTime? @db.Date
+  D_END               DateTime? @db.Date
+}
+
+model REG_LOCALES {
+  U_LOCALE_ID String @id  @db.Uuid @default(uuid())
+  S_LOCALE_NAME    String?  @db.VarChar(255)
+  S_LOCALE_CODE    String?  @db.VarChar(255)
+  C_ACTIVE  Boolean?
+}
+model REG_LOCALE_VALUES {
+  U_LOCALE_VALUE_ID String @id  @db.Uuid @default(uuid())
+  U_LOCALE_ID String? @db.Uuid @default(uuid())
+  S_LOCALE_VALUE    String?  @db.VarChar(255)
+  S_LOCALE_ENTITY_TYPE    String?
+  S_LOCALE_ENTITY_CODE    String? 
+  S_LOCALE_ENTITY_KEY    String? 
+  C_ACTIVE  Boolean?
+
+}
+model REG_CATEGORY_PARAM_TYPES {
+  U_PARAM_TYPE_ID String @id  @db.Uuid @default(uuid())
+  S_PARAM_TYPE_NAME    String?  @db.VarChar(255)
+  S_PARAM_TYPE_CODE    String?  @db.VarChar(255)
+  C_ACTIVE  Boolean?
+}
+model USR_CATEGORIES {
+  U_CATEGORY_ID String @id  @db.Uuid @default(uuid())
+  U_DOMAIN_ID String?  @db.Uuid @default(uuid())
+  U_FIRM_ID String?  @db.Uuid @default(uuid())
+  U_CATEGORY_PARENT_ID String?  @db.Uuid @default(uuid())
+  S_CATEGORY_NAME    String?  @db.VarChar(255)
+  C_ACTIVE  Boolean?
+  C_SHARED  Boolean?
+}
+model USR_CATEGORY_GROUPS {
+  U_CATEGORY_GROUP_ID String @id  @db.Uuid @default(uuid())
+  U_FIRM_ID     String?  @db.Uuid @default(uuid()) 
+  U_DOMAIN_ID String?  @db.Uuid @default(uuid())
+  U_CATEGORY_ID String?  @db.Uuid @default(uuid())
+  S_CATEGORY_GROUP_NAME    String?  @db.VarChar(255)
+  N_ORDER    Int  @db.Integer
+  C_ACTIVE  Boolean?
+}
+model USR_CATEGORY_PARAMS {
+  U_CATEGORY_PARAM_ID String @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID String?  @db.Uuid @default(uuid())
+  U_CATEGORY_GROUP_ID String?  @db.Uuid @default(uuid())
+  U_PARAM_TYPE_ID String?  @db.Uuid @default(uuid())
+  S_PARAM_NAME    String?  @db.VarChar(255)
+  N_ORDER    Int  @db.Integer
+  C_ACTIVE  Boolean?
+}
+model USR_CATEGORY_PARAM_ITEMS {
+  U_CATEGORY_PARAM_ITEM_ID String @id  @db.Uuid @default(uuid())
+  U_DOMAIN_ID String?  @db.Uuid @default(uuid())
+  U_CATEGORY_PARAM_ID String?  @db.Uuid @default(uuid())
+  S_CATEGORY_PARAM_ITEM_NAME    String?  @db.VarChar(255)
+  C_ACTIVE  Boolean?
+}
+
+
+model USR_FIRMS {
+  U_FIRM_ID String?  @db.Uuid @default(uuid())
+  U_ID      String   @id @db.Uuid @default(uuid())
+  S_NAME    String?  @db.VarChar(255)
+  C_ACTIVE  Boolean?
+}
+//товары
+model ROOMS {
+  ID      String   @id @db.Uuid @default(uuid())
+  NAME    String  @db.VarChar(255)
+  SLUG    String  @db.VarChar(255)
+  PRICE    String  @db.VarChar(255)
+  COUNTRY    String  @db.VarChar(255)
+  COUNT_BEDS    String  @db.VarChar(255)
+  COUNT_CUSTOMER    String  @db.VarChar(255)
+  AREA    String  @db.VarChar(255)
+  SHORT_DESC    String  @db.VarChar(255)
+  FULL_DESC    String  @db.VarChar(255)
+  IMG_PREV    String?  @db.VarChar(255)
+  IMG_BANNER    String?  @db.VarChar(255)
+}
+//товары
+model USR_PRODUCTS {
+  U_PRODUCT_ID       String   @id @db.Uuid @default(uuid())
+  U_CATEGORY_ID     String?  @db.Uuid @default(uuid()) // категория товара от нее зависит отрисовка шаблона и поля
+  U_USER_ID     String?  @db.Uuid @default(uuid()) //пользователь автор
+  S_NAME         String  @db.VarChar(255)
+  S_CODE         String?  @db.VarChar(255) //код товара
+  S_TAGS         String?  @db.VarChar(255) //теги
+  C_ACTIVE        Boolean?
+}
+//разделы
+model USR_CHAPTERS {
+  U_CHAPTER_ID       String   @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID       String   @db.Uuid @default(uuid())
+  U_USER_FIRM_ID     String?  @db.Uuid @default(uuid()) // фирма в которой использовать раздел
+  U_USER_ID     String?  @db.Uuid @default(uuid()) //пользователь автор
+  S_NAME         String  @db.VarChar(255)
+  N_ORDER    Int  @db.Integer
+  C_ACTIVE        Boolean?
+}
+//шаблоны
+model USR_TEMPLATES {
+  U_TEMPLATE_ID       String   @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID     String  @db.Uuid @default(uuid()) 
+  U_USER_FIRM_ID     String?  @db.Uuid @default(uuid()) 
+  U_CATEGORY_ID     String?  @db.Uuid @default(uuid()) // категория товара соответствует шаблону
+  S_NAME         String  @db.VarChar(255)
+  N_TYPE   Int  @db.Integer
+  C_ACTIVE        Boolean?
+}
+//разделы шаблонов
+model USR_TEMPLATE_CHAPTERS {
+  U_ID       String   @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID     String  @db.Uuid @default(uuid()) 
+  U_TEMPLATE_ID       String   @db.Uuid @default(uuid())
+  U_CHAPTER_ID     String  @db.Uuid @default(uuid()) 
+  N_ORDER   Int  @db.Integer
+}
+//группы разделов 
+model USR_CHAPTER_GROUPS{
+  U_ID       String   @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID     String  @db.Uuid @default(uuid()) 
+  U_GROUP_ID       String   @db.Uuid @default(uuid())
+  U_CHAPTER_ID     String  @db.Uuid @default(uuid()) 
+  N_ORDER   Int?  @db.Integer
+}
+//параметры (поля) группы  
+model USR_GROUP_PARAMS{
+  U_ID       String   @id @db.Uuid @default(uuid())
+  U_FIRM_ID     String  @db.Uuid @default(uuid()) 
+  U_CATEGORY_ID     String  @db.Uuid @default(uuid()) 
+  U_GROUP_ID     String  @db.Uuid @default(uuid()) 
+  S_NAME         String  @db.VarChar(255)
+  S_ADDITIONAL         String?
+  C_ACTIVE        Boolean?
+  N_TYPE   Int?  @db.Integer //тип поля параметра
+  N_ORDER  Int?
+}
+
+// доп. значения параметров. значения для выпадающих списков и пр.
+model USR_GROUP_PARAM_ITEMS{
+  U_ID       String   @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID     String  @db.Uuid @default(uuid()) 
+  U_GROUP_CHAPTER_PARAM_ID     String  @db.Uuid @default(uuid()) //(ссылка на USR_CHAPTER_GROUP_PARAMS)
+  S_ITEM_PARAM_VALUE         String?
+  C_ACTIVE        Boolean?
+}
+
+model USR_USERS {
+  U_USER_ID       String   @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID     String?  @db.Uuid @default(uuid())
+  U_DEFAULT_LOCALE_ID     String?  @db.Uuid @default(uuid())
+  U_ROLE_ID     String?  @db.Uuid @default(uuid())
+  S_LOGIN         String?  @db.VarChar(255)
+  S_FIRSTNAME         String?  @db.VarChar(255)
+  S_AVATAR         String?  @db.VarChar(255) //upload image for user делаем выбор и загрузку изображений
+  S_FIRM_MAIN         String?  @db.VarChar(255) //делаем выбор из справочника фирм типа select2 
+  S_LASTNAME         String?  @db.VarChar(255)
+  S_PASSWORD_HASH String?  @db.VarChar(255)
+  S_EMAIL         String?  @db.VarChar(255)
+  C_ACTIVE        Boolean?
+}
+
+//У пользователя несколько фирм. Делаем таблицу подчиненную пользователю в форме редактирования пользователя для добавления фирмы или изменения
+model USR_USER_FIRMS {
+  U_USER_FIRM_ID String  @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID    String? @db.Uuid @default(uuid())
+  U_USER_ID      String? @db.Uuid @default(uuid())
+}
+
+model USR_USER_ROLES {
+  U_USER_ROLE_ID String   @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID    String?  @db.Uuid @default(uuid())
+  U_ROLE_ID      String?  @db.Uuid @default(uuid())
+  C_ACTIVE       Boolean?
+}
+
+model USR_USER_SESSIONS {
+  U_SESSION_ID String    @id @db.Uuid @default(uuid())
+  U_DOMAIN_ID  String?   @db.Uuid @default(uuid())
+  U_USER_ID    String?   @db.Uuid @default(uuid())
+  D_BEGIN      DateTime? @db.Timestamp
+  D_END        DateTime? @db.Timestamp
+  S_IP         String?   @db.VarChar(255)
+}

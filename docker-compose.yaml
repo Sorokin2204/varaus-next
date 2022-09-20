@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  db_laplass: 
+    container_name: db_laplass
+    expose:
+    - "5433"
+    ports:
+    - "5433:5433"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=admin
+      - POSTGRES_HOST=localhost
+    image: postgres:14.3-alpine
+    command: -p 5433

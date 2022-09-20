@@ -1,0 +1,22 @@
+.modal {
+  max-width: 1000px;
+  width: calc(100vw - 32px);
+  position: relative;
+}
+
+.roleBody {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+  row-gap: 16px;
+}
+.modalBody {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+  row-gap: 16px;
+  background-color: #fff;
+}
+.modalFooter {
+  margin-top: 16px;
+}

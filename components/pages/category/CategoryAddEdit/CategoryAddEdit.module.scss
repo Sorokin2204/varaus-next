@@ -1,0 +1,11 @@
+.head {
+  display: flex;
+  align-items: flex-start;
+}
+
+.category {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: flex-end;
+  grid-gap: 10px;
+}

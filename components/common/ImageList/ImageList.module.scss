@@ -1,0 +1,13 @@
+.title {
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 110px));
+  grid-gap: 16px;
+}
+.wrap {
+  & + & {
+    margin-top: 16px;
+  }
+}

@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+  // grid-template-columns: 14px 1fr 1fr 98px 40px;
+  grid-gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.drag {
+  mask-image: url('/drag.svg');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: 50% 50%;
+  width: 12px;
+  min-width: 12px;
+  height: 11px;
+  background-color: #cfd4d9;
+}

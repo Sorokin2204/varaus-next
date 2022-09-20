@@ -1,0 +1,55 @@
+@import './template/base';
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -15px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 15px; /* gutter size */
+  //   background-clip: padding-box;
+}
+
+.my-masonry-grid_column > div {
+  margin-bottom: 15px;
+}
+.form-check-input {
+  width: 1.3em !important;
+  height: 1.3em !important;
+}
+
+.react-select-custom {
+  & .react-select__container {
+  }
+}
+.react-switch {
+  & .react-switch-bg {
+    // height: 19px;
+    background: transparent !important;
+    border: 2px solid #0d6efd !important;
+    height: 10px !important;
+    width: 24px !important;
+    margin: 3px !important;
+  }
+  & .react-switch-handle {
+    background: #0d6efd !important;
+  }
+  & .react-switch-handle {
+    margin-top: 0.3px !important;
+    width: 15px !important;
+    height: 15px !important;
+  }
+}
+.form-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #212529;
+}
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #f8f9fa;
+}
+
+.btn {
+}
