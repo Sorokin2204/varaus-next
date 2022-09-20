@@ -2,6 +2,7 @@ import formidable from 'formidable';
 import fs from 'fs';
 import mimeDb from 'mime-db';
 import { v4 as uuidv4 } from 'uuid';
+const path = require('path');
 export const config = {
   api: {
     bodyParser: false,
@@ -21,7 +22,7 @@ const saveFile = async (file) => {
   console.log(file.filepath);
   const data = fs.readFileSync(file.filepath);
   const genFileName = `${uuidv4()}.${mimeDb[file.mimetype].extensions[0]}`;
-  fs.writeFileSync(`./public/${genFileName}`, data);
+  fs.writeFileSync(path.join(process.cwd(), `./public/${genFileName}`), data);
   await fs.unlinkSync(file.filepath);
   return genFileName;
 };
