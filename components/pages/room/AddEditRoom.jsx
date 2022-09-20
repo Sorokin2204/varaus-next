@@ -140,10 +140,10 @@ const AddEditRoom = ({ value }) => {
       userForm.setValue('area', value?.AREA);
       userForm.setValue('shortDesc', value?.SHORT_DESC);
       userForm.setValue('fullDesc', value?.FULL_DESC);
-      setUploadPrev(`http://localhost:3000/${value?.IMG_PREV}`);
-      setUploadUrlPrev(`http://localhost:3000/${value?.IMG_PREV}`);
-      setUploadBanner(`http://localhost:3000/${value?.IMG_BANNER}`);
-      setUploadUrlBanner(`http://localhost:3000/${value?.IMG_BANNER}`);
+      setUploadPrev(`${process.env.NEXTAUTH_URL}/${value?.IMG_PREV}`);
+      setUploadUrlPrev(`${process.env.NEXTAUTH_URL}/${value?.IMG_PREV}`);
+      setUploadBanner(`${process.env.NEXTAUTH_URL}/${value?.IMG_BANNER}`);
+      setUploadUrlBanner(`${process.env.NEXTAUTH_URL}/${value?.IMG_BANNER}`);
     }
   }, [value]);
 
